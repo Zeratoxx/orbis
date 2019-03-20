@@ -1,3 +1,3 @@
 # Orbis
 
-Eine Android-App für irgendein Wettbewerb.
+Eine Android-App für irgendeinen Wettbewerb.
