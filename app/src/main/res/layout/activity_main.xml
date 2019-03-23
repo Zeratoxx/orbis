@@ -11,14 +11,31 @@
     <include layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
+        android:tint="@color/colorPrimary"
         app:elevation="16dp"
         app:fabCustomSize="64dp"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
+        app:maxImageSize="36dp"
+        app:srcCompat="@drawable/ic_round_person_24px"
+        tools:ignore="VectorDrawableCompat" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="88dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="@color/colorPrimary"
+        app:maxImageSize="28dp"
+        app:srcCompat="@drawable/ic_round_settings_24px"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

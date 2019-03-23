@@ -44,6 +44,7 @@
     <Button
         android:id="@+id/button_start"
         style="@style/Widget.MaterialComponents.Button"
+        android:background="@drawable/rounded_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

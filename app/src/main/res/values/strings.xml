@@ -6,4 +6,8 @@
     <string name="back">Back</string>
     <string name="coins">Coins</string>
     <string name="aufgabenbild">Aufgabenbild</string>
+    <string name="profil">Profil</string>
+    <string name="punkte">Punkte:</string>
+    <string name="einstellungen">Einstellungen</string>
+    <string name="ton">Ton</string>
 </resources>
