@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 //data.putString("port", port);
                 //myIntent.putExtra("myBundle", data);
                 startActivity(myIntent);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                overridePendingTransition(R.anim.none, R.anim.none);
 
 
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 //data.putString("port", port);
                 //myIntent.putExtra("myBundle", data);
                 startActivity(myIntent);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                overridePendingTransition(R.anim.none, R.anim.none);
 
 
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -81,14 +81,14 @@ public class MainActivity extends AppCompatActivity {
         button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), PlayActivity.class);
+                Intent myIntent = new Intent(view.getContext(), WorldsActivity.class);
                 //Bundle data = new Bundle();
                 //data.putSerializable("senderliste", newSenderList);
                 //data.putString("ip", ipAdress);
                 //data.putString("port", port);
                 //myIntent.putExtra("myBundle", data);
                 startActivity(myIntent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                overridePendingTransition(R.anim.none, R.anim.none);
             }
         });
     }

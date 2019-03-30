@@ -17,6 +17,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@string/aufgabenbeschreibung"
+        android:text="aufgabe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,12 +56,12 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="12dp"
+        android:contentDescription="@string/coins"
         android:padding="8dp"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toStartOf="@+id/textView_score"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/comic_world_croped"
-        android:contentDescription="@string/coins" />
+        app:srcCompat="@drawable/comic_coin_edited" />
 
     <TextView
         android:id="@+id/textView_score"
@@ -71,5 +73,29 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView_coins"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView_coins" />
+
+    <ImageView
+        android:id="@+id/imageView_home"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_back"
+        app:layout_constraintStart_toEndOf="@+id/imageView_back"
+        app:layout_constraintTop_toTopOf="@+id/imageView_back"
+        app:srcCompat="@drawable/ic_round_home_24px"
+        android:contentDescription="@string/home"
+        tools:ignore="VectorDrawableCompat" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_back"
+        app:layout_constraintStart_toStartOf="@+id/imageView_home"
+        app:layout_constraintTop_toTopOf="@+id/imageView_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
