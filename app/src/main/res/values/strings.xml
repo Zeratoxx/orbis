@@ -13,4 +13,5 @@
     <string name="home">Home</string>
     <string name="aufgabenbeschreibung">Aufgabenbeschreibung</string>
     <string name="welten">Welten</string>
+    <string name="done">Done</string>
 </resources>

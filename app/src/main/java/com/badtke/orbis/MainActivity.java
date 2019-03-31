@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
         imageView_earth = (ImageView) findViewById(R.id.erde);
         button_start = (Button) findViewById(R.id.button_start);
         fab_settings = (FloatingActionButton) findViewById(R.id.fab_settings);
-
-        imageView_earth.setImageResource(R.drawable.comic_world_croped);
-
     }
 
     public void initializeOnClickActions() {
