@@ -74,6 +74,7 @@ class WorldsActivity : AppCompatActivity() {
 
         // Setting the padding such that the items will appear in the middle of the screen
         //val padding: Int = ScreenUtils.getScreenWidth(this)/2 - ScreenUtils.dpToPx(this, 40)
+        //val customPadding: Int =
         //rvHorizontalPicker.setPadding(padding, 0, padding, 0)
 
         // Setting layout manager
