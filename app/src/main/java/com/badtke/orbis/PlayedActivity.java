@@ -37,7 +37,7 @@ public class PlayedActivity extends AppCompatActivity {
         imageView_home = (ImageView) findViewById(R.id.imageView_home);
 
 
-        textView_done.setText("Glückwunsch! Du hast die Welt ein sauberer gemacht!");
+        textView_done.setText("Glückwunsch! Du hast die Welt sauberer gemacht!");
     }
 
     public void initializeOnClickActions() {
