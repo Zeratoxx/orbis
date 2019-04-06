@@ -5,12 +5,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <TextView
+        android:id="@+id/textView_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="Levelnummer"
+        android:fontFamily="sans-serif-thin"
+        android:text="Level"
+        android:textAllCaps="false"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_home" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="12"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView_level"
+        app:layout_constraintStart_toStartOf="@+id/textView_level"
+        app:layout_constraintTop_toBottomOf="@+id/textView_level" />
+
+
     <ImageView
         android:id="@+id/imageView_back"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:contentDescription="@string/back"
         android:scaleType="centerInside"
+        android:tint="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_round_keyboard_backspace_24px"
@@ -20,9 +49,8 @@
         android:id="@+id/imageView_coins"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="12dp"
         android:contentDescription="@string/coins"
-        android:padding="8dp"
+        android:padding="@dimen/coin_padding"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toStartOf="@+id/textView_score"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
+        android:fontFamily="sans-serif-light"
         android:text="583"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_coins"
@@ -43,12 +72,13 @@
         android:id="@+id/imageView_home"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:contentDescription="@string/home"
         android:scaleType="centerInside"
+        android:tint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_back"
         app:layout_constraintStart_toEndOf="@+id/imageView_back"
         app:layout_constraintTop_toTopOf="@+id/imageView_back"
         app:srcCompat="@drawable/ic_round_home_24px"
-        android:contentDescription="@string/home"
         tools:ignore="VectorDrawableCompat" />
 
     <View
@@ -63,34 +93,21 @@
         app:layout_constraintStart_toStartOf="@+id/imageView_home"
         app:layout_constraintTop_toTopOf="@+id/imageView_back" />
 
-    <TextView
-        android:id="@+id/textView_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="Levelnummer"
-        android:fontFamily="sans-serif-thin"
-        android:text="Level 12"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_home" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
+        android:alpha="0.7"
+        android:fadingEdgeLength="1dp"
         app:layout_constraintBottom_toTopOf="@+id/textView_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_level"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:srcCompat="@drawable/tree_clipart_low_resolution" />
 
     <TextView
@@ -102,7 +119,7 @@
         android:layout_marginBottom="120dp"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

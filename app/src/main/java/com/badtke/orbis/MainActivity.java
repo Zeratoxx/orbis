@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //Wenn keine serialisierung, dann Aufgaben neuladen
+
         initializeVariables();
         try {
             initializeOnClickActions();

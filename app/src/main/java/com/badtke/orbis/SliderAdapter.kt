@@ -19,7 +19,7 @@ class SliderAdapter : RecyclerView.Adapter<SliderItemViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderItemViewHolder {
-        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.world_adapter, parent, false)
+        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.adapter_world, parent, false)
 
         itemView.setOnClickListener(clickListener)
 

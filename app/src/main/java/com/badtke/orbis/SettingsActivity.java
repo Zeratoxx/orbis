@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void initializeVariables() {
         imageView_back = (ImageView) findViewById(R.id.imageView_back);
-        switch_mute = (Switch) findViewById(R.id.switch_mute);
+        //switch_mute = (Switch) findViewById(R.id.switch_mute);
     }
 
     public void initializeOnClickActions() {

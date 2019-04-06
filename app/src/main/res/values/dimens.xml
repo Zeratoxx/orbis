@@ -1,3 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="coin_padding">14dp</dimen>
+    <dimen name="text_normalsize">32sp</dimen>
 </resources>
