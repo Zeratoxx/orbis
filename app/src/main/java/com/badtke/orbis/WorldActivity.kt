@@ -19,11 +19,12 @@ class WorldsActivity : AppCompatActivity() {
     private lateinit var tvSelectedItem: TextView
 
     private lateinit var imageView_back: ImageView
+    private lateinit var imageView_last: ImageView
+    private lateinit var imageView_next: ImageView
     private lateinit var world_eins: Button
     private lateinit var world_zwei: Button
     private lateinit var world_drei: Button
 
-    private val data1 = intArrayOf(1, 2, 3)
     private val data = (1..3).toList().map { it.toString() } as ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +46,8 @@ class WorldsActivity : AppCompatActivity() {
         world_eins = findViewById(R.id.button1)
         world_zwei = findViewById(R.id.button2)
         world_drei = findViewById(R.id.button3)
+        imageView_last = findViewById(R.id.imageView_last)
+        imageView_next = findViewById(R.id.imageView_next)
 
         tvSelectedItem = findViewById(R.id.tv_selected_item)
         rvHorizontalPicker = findViewById(R.id.rv_horizontal_picker)
@@ -68,6 +71,10 @@ class WorldsActivity : AppCompatActivity() {
             startActivity(myIntent)
             overridePendingTransition(R.anim.none, R.anim.none)
         }
+
+        //imageView_last.setOnClickListener {rvHorizontalPicker.smoothScrollToPosition(rvHorizontalPicker.getChildLayoutPosition(view) + 1) }
+
+        //imageView_next.setOnClickListener { onBackPressed() }
     }
 
     private fun setHorizontalPicker() {

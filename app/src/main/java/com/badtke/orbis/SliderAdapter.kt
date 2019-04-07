@@ -1,5 +1,6 @@
 package com.badtke.orbis
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +32,11 @@ class SliderAdapter : RecyclerView.Adapter<SliderItemViewHolder>() {
         return data.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: SliderItemViewHolder, position: Int) {
         holder.tvItem?.setImageResource(R.drawable.comic_world_croped)
+        holder.textView_worldname?.text = "Welt " + data[position]
+
     }
 
     fun setData(data: ArrayList<String>) {

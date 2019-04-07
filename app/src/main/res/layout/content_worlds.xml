@@ -115,21 +115,19 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView_next"
         android:layout_width="60dp"
         android:layout_height="0dp"
-        android:contentDescription="TODO"
-        android:rotation="180"
         android:scaleType="centerInside"
         android:tint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@+id/rv_horizontal_picker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rv_horizontal_picker"
-        app:srcCompat="@drawable/ic_round_keyboard_backspace_24px"
+        app:srcCompat="@drawable/ic_round_arrow_forward_ios_24px"
         tools:ignore="VectorDrawableCompat" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView_last"
         android:layout_width="60dp"
         android:layout_height="0dp"
         android:scaleType="centerInside"
@@ -138,7 +136,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rv_horizontal_picker"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_round_keyboard_backspace_24px"
+        app:srcCompat="@drawable/ic_round_arrow_back_ios_24px"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
