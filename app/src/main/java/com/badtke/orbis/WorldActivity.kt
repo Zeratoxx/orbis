@@ -15,6 +15,9 @@ import java.util.Arrays
 
 class WorldsActivity : AppCompatActivity() {
 
+
+    private var current_position: Int = 0
+
     private lateinit var rvHorizontalPicker: RecyclerView
     private lateinit var tvSelectedItem: TextView
 
@@ -52,6 +55,8 @@ class WorldsActivity : AppCompatActivity() {
         tvSelectedItem = findViewById(R.id.tv_selected_item)
         rvHorizontalPicker = findViewById(R.id.rv_horizontal_picker)
 
+
+        imageView_last.visibility = View.INVISIBLE
     }
 
     private fun initializeOnClickActions() {
@@ -72,9 +77,36 @@ class WorldsActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.none, R.anim.none)
         }
 
-        //imageView_last.setOnClickListener {rvHorizontalPicker.smoothScrollToPosition(rvHorizontalPicker.getChildLayoutPosition(view) + 1) }
+        imageView_last.setOnClickListener {
+            var new_pos: Int = current_position - 1
 
-        //imageView_next.setOnClickListener { onBackPressed() }
+            if (data.size > 0) {
+                if (new_pos < 0) {
+                    new_pos = 0
+                } else if (new_pos >= data.size) {
+                    new_pos = data.size - 1
+                }
+
+                rvHorizontalPicker.smoothScrollToPosition(new_pos)
+            }
+        }
+
+        imageView_next.setOnClickListener {
+            var new_pos: Int = current_position + 1
+
+            if (data.size > 0) {
+                if (new_pos < 0) {
+                    new_pos = 0
+                } else if (new_pos >= data.size) {
+                    new_pos = data.size - 1
+                }
+
+                rvHorizontalPicker.smoothScrollToPosition(new_pos)
+            }
+        }
+
+
+
     }
 
     private fun setHorizontalPicker() {
@@ -89,6 +121,13 @@ class WorldsActivity : AppCompatActivity() {
             callback = object : SliderLayoutManager.OnItemSelectedListener {
                 override fun onItemSelected(layoutPosition: Int) {
                     tvSelectedItem.text = data[layoutPosition]
+                    current_position = layoutPosition
+                    if (current_position <= 0){
+                        imageView_last.visibility = View.INVISIBLE
+                    } else imageView_last.visibility = View.VISIBLE
+                    if (current_position >= data.size-1){
+                        imageView_next.visibility = View.INVISIBLE
+                    } else imageView_next.visibility = View.VISIBLE
                 }
             }
         }

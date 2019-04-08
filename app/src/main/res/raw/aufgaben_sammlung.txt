@@ -1,0 +1,61 @@
+Sammle weißes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle gelbes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle grünes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle orangenes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle rotes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle pinkes / rosafarbenes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle lilafarbenes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle blaues Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle braunes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle schwarzes Plastik vom Boden auf, um diese zu entsorgen.;10
+Sammle graues Plastik vom Boden auf, um diese zu entsorgen.;10
+Trenne heute deinen Müll.;10;*
+Kläre eine Person über den Emissionshandel auf.;10;*
+Kläre eine Person über die Folgen des Klimawandels auf.;10;*
+Kläre eine Person über die Gründe des Klimawandels auf.;10;*
+Kläre eine Person über gefährdete Arten auf.;10;*
+Kläre eine Person über bedrohte Arten auf.;10;*
+Spende drei Kleidungsstücke.;10
+Esse heute nur vegetarisch.;10;*
+Esse heute nur vegan.;10;*
+Kaufe dir Baumwolltaschen.;10;*
+Informiere dich über CO2 und den Schaden an die Umwelt.;10
+Verzichte den ganzen Tag auf Verpackungen.;10
+Lass das Auto heute stehen.;10
+Benutze heute nur von 8:00 - 20:00 Uhr deine Lampen, wenn nötig!;10
+Besuche einen Second-Hand Laden in deiner Umgebung.;10
+Esse heute kein Fleisch.;10
+Informiere dich über die Zucht von Schweinen, Kühen und Hühner.;10;*
+Ein Tag ohne Fast Food.;10;*
+Spende Kleidung o.Ä. an Obdachlose.;10
+Kaufe heute eine Sache bei deinem Landwirt im Umkreis ein.;10;*
+Sammle durchsichtiges Plastik vom Boden auf, um dies zu entsorgen.;10
+Kaufe heute keine neue Kleidung!!;10
+Suche einen Unverpackt Laden in deiner Nähe auf.;10;*
+Kaufe heute keine Plastikflaschen.;10
+Spende alte ( und gut erhaltene!) Kleidung an einen Second-Hand Laden.;10
+Kaufe heute nur Bio Produkte ein.;10
+Spende deine Bücher.;10
+Schmeiße deinen Müll nicht auf den Boden.;10
+Informiere dich über Ökostrom.;10;*
+Kaufe heute nichts ein!;10
+Benutze heute nur öffentliche Verkehrsmittel.;10
+Erkläre einer Person diese App.;10
+Kaufe dein Obst und Gemüse regional ein.;10;*
+Poste den Hashtag #NYD (Now you do).;10
+Konsumiere achtsamer.;10
+Wasche nachhaltig, indem du bei niedriger Temperatur länger  wäschst.;10
+Hänge deine Wäsche an einer Wäscheleine auf und vermeide den Trockner.;10
+Verschwende kein Essen!;10
+Vermeide Avocados zu kaufen.;10;*
+Verzichte heute auf Fisch.;10
+Baue dir deine Kräuter selbst an.;10
+Versuche beim Putzen Chemikalien zu vermeiden.;10
+Bade heute nicht!;10
+Dusche nur 7 Minuten!!;10
+Schreibe auf der Rückseite deines Blattes.;10
+Besuche die Homepage von Oxfam.;10
+Anstatt einer Plastikflasche kaufe dir eine aus Glas.;10
+Informiere dich über Sodastream.;10
+Kaufe bei keiner Fastmode ein.;10
+Achte auf deinen Umgang mit Tieren.;10

@@ -91,4 +91,9 @@ class SliderLayoutManager(context: Context?) : LinearLayoutManager(context) {
     interface OnItemSelectedListener {
         fun onItemSelected(layoutPosition: Int)
     }
+/*
+    interface OnItemClickListener {
+        fun onItemClick(item: ContentItem)
+    }
+*/
 }
