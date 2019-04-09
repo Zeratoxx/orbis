@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ArrayList<String>> aufgaben_sammlung = new ArrayList<ArrayList<String>>();
     private Integer file = R.raw.aufgaben_sammlung;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
 
     public void initializeOnClickActions() {
         fab_profile.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +111,16 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.none, R.anim.none);
             }
         });
+
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -141,4 +152,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        //datenmodellserialisieren();
+    }
 }

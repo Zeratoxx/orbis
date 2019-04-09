@@ -1,61 +1,61 @@
-Sammle weißes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle gelbes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle grünes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle orangenes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle rotes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle pinkes / rosafarbenes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle lilafarbenes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle blaues Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle braunes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle schwarzes Plastik vom Boden auf, um diese zu entsorgen.;10
-Sammle graues Plastik vom Boden auf, um diese zu entsorgen.;10
-Trenne heute deinen Müll.;10;*
-Kläre eine Person über den Emissionshandel auf.;10;*
-Kläre eine Person über die Folgen des Klimawandels auf.;10;*
-Kläre eine Person über die Gründe des Klimawandels auf.;10;*
-Kläre eine Person über gefährdete Arten auf.;10;*
-Kläre eine Person über bedrohte Arten auf.;10;*
-Spende drei Kleidungsstücke.;10
-Esse heute nur vegetarisch.;10;*
-Esse heute nur vegan.;10;*
-Kaufe dir Baumwolltaschen.;10;*
-Informiere dich über CO2 und den Schaden an die Umwelt.;10
-Verzichte den ganzen Tag auf Verpackungen.;10
-Lass das Auto heute stehen.;10
-Benutze heute nur von 8:00 - 20:00 Uhr deine Lampen, wenn nötig!;10
-Besuche einen Second-Hand Laden in deiner Umgebung.;10
-Esse heute kein Fleisch.;10
-Informiere dich über die Zucht von Schweinen, Kühen und Hühner.;10;*
-Ein Tag ohne Fast Food.;10;*
-Spende Kleidung o.Ä. an Obdachlose.;10
-Kaufe heute eine Sache bei deinem Landwirt im Umkreis ein.;10;*
-Sammle durchsichtiges Plastik vom Boden auf, um dies zu entsorgen.;10
-Kaufe heute keine neue Kleidung!!;10
-Suche einen Unverpackt Laden in deiner Nähe auf.;10;*
-Kaufe heute keine Plastikflaschen.;10
-Spende alte ( und gut erhaltene!) Kleidung an einen Second-Hand Laden.;10
-Kaufe heute nur Bio Produkte ein.;10
-Spende deine Bücher.;10
-Schmeiße deinen Müll nicht auf den Boden.;10
-Informiere dich über Ökostrom.;10;*
-Kaufe heute nichts ein!;10
-Benutze heute nur öffentliche Verkehrsmittel.;10
-Erkläre einer Person diese App.;10
-Kaufe dein Obst und Gemüse regional ein.;10;*
-Poste den Hashtag #NYD (Now you do).;10
-Konsumiere achtsamer.;10
-Wasche nachhaltig, indem du bei niedriger Temperatur länger  wäschst.;10
-Hänge deine Wäsche an einer Wäscheleine auf und vermeide den Trockner.;10
-Verschwende kein Essen!;10
-Vermeide Avocados zu kaufen.;10;*
-Verzichte heute auf Fisch.;10
-Baue dir deine Kräuter selbst an.;10
-Versuche beim Putzen Chemikalien zu vermeiden.;10
-Bade heute nicht!;10
-Dusche nur 7 Minuten!!;10
-Schreibe auf der Rückseite deines Blattes.;10
-Besuche die Homepage von Oxfam.;10
-Anstatt einer Plastikflasche kaufe dir eine aus Glas.;10
-Informiere dich über Sodastream.;10
-Kaufe bei keiner Fastmode ein.;10
-Achte auf deinen Umgang mit Tieren.;10
+1;Sammle weiÃŸes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle gelbes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle grÃ¼nes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle orangenes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle rotes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle pinkes / rosafarbenes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle lilafarbenes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle blaues Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle braunes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle schwarzes Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Sammle graues Plastik vom Boden auf, um diese zu entsorgen.;10;-
+1;Trenne heute deinen MÃ¼ll.;10;*
+1;KlÃ¤re eine Person Ã¼ber den Emissionshandel auf.;10;*
+1;KlÃ¤re eine Person Ã¼ber die Folgen des Klimawandels auf.;10;*
+1;KlÃ¤re eine Person Ã¼ber die GrÃ¼nde des Klimawandels auf.;10;*
+1;KlÃ¤re eine Person Ã¼ber gefÃ¤hrdete Arten auf.;10;*
+1;KlÃ¤re eine Person Ã¼ber bedrohte Arten auf.;10;*
+1;Spende drei KleidungsstÃ¼cke.;10;-
+1;Esse heute nur vegetarisch.;10;*
+1;Esse heute nur vegan.;10;*
+1;Kaufe dir Baumwolltaschen.;10;*
+1;Informiere dich Ã¼ber CO2 und den Schaden an die Umwelt.;10;-
+1;Verzichte den ganzen Tag auf Verpackungen.;10;-
+1;Lass das Auto heute stehen.;10;-
+1;Benutze heute nur von 8:00 - 20:00 Uhr deine Lampen, wenn nÃ¶tig!;10;-
+1;Besuche einen Second-Hand Laden in deiner Umgebung.;10;-
+1;Esse heute kein Fleisch.;10;-
+1;Informiere dich Ã¼ber die Zucht von Schweinen, KÃ¼hen und HÃ¼hner.;10;*
+1;Ein Tag ohne Fast Food.;10;*
+1;Spende Kleidung o.Ã„. an Obdachlose.;10;-
+1;Kaufe heute eine Sache bei deinem Landwirt im Umkreis ein.;10;*
+1;Sammle durchsichtiges Plastik vom Boden auf, um dies zu entsorgen.;10;-
+1;Kaufe heute keine neue Kleidung!!;10;-
+1;Suche einen Unverpackt Laden in deiner NÃ¤he auf.;10;*
+1;Kaufe heute keine Plastikflaschen.;10;-
+1;Spende alte ( und gut erhaltene!) Kleidung an einen Second-Hand Laden.;10;-
+1;Kaufe heute nur Bio Produkte ein.;10;-
+1;Spende deine BÃ¼cher.;10;-
+1;SchmeiÃŸe deinen MÃ¼ll nicht auf den Boden.;10;-
+1;Informiere dich Ã¼ber Ã–kostrom.;10;*
+1;Kaufe heute nichts ein!;10;-
+1;Benutze heute nur Ã¶ffentliche Verkehrsmittel.;10;-
+1;ErklÃ¤re einer Person diese App.;10;-
+1;Kaufe dein Obst und GemÃ¼se regional ein.;10;*
+1;Poste den Hashtag #NYD (Now you do).;10;-
+1;Konsumiere achtsamer.;10;-
+1;Wasche nachhaltig, indem du bei niedriger Temperatur lÃ¤nger  wÃ¤schst.;10;-
+1;HÃ¤nge deine WÃ¤sche an einer WÃ¤scheleine auf und vermeide den Trockner.;10;-
+1;Verschwende kein Essen!;10;-
+1;Vermeide Avocados zu kaufen.;10;*
+1;Verzichte heute auf Fisch.;10;-
+1;Baue dir deine KrÃ¤uter selbst an.;10;-
+1;Versuche beim Putzen Chemikalien zu vermeiden.;10;-
+1;Bade heute nicht!;10;-
+1;Dusche nur 7 Minuten!!;10;-
+1;Schreibe auf der RÃ¼ckseite deines Blattes.;10;-
+1;Besuche die Homepage von Oxfam.;10;-
+1;Anstatt einer Plastikflasche kaufe dir eine aus Glas.;10;-
+1;Informiere dich Ã¼ber Sodastream.;10;-
+1;Kaufe bei keiner Fastmode ein.;10;-
+1;Achte auf deinen Umgang mit Tieren.;10;-

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 /**
  * Created by nbtk on 5/4/18.
@@ -34,7 +35,12 @@ class SliderAdapter : RecyclerView.Adapter<SliderItemViewHolder>() {
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: SliderItemViewHolder, position: Int) {
-        holder.tvItem?.setImageResource(R.drawable.comic_world_croped)
+
+        if (position == 0) {
+            holder.tvItem?.setImageResource(R.drawable.comic_badworld_croped)
+        } else {
+            holder.tvItem?.setImageResource(R.drawable.comic_world_croped)
+        }
         holder.textView_worldname?.text = "Welt " + data[position]
 
     }

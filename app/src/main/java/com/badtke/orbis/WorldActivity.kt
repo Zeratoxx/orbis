@@ -3,30 +3,24 @@ package com.badtke.orbis
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Intent
-import android.widget.Button
 import android.widget.ImageView
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.content_played.*
 import java.util.ArrayList
-import java.util.Arrays
 
 class WorldsActivity : AppCompatActivity() {
 
 
-    private var current_position: Int = 0
+    private var currentPosition: Int = 0
 
     private lateinit var rvHorizontalPicker: RecyclerView
-    private lateinit var tvSelectedItem: TextView
-
     private lateinit var imageView_back: ImageView
     private lateinit var imageView_last: ImageView
     private lateinit var imageView_next: ImageView
-    private lateinit var world_eins: Button
-    private lateinit var world_zwei: Button
-    private lateinit var world_drei: Button
+    private lateinit var imageView_coins: ImageView
 
     private val data = (1..3).toList().map { it.toString() } as ArrayList<String>
 
@@ -46,62 +40,46 @@ class WorldsActivity : AppCompatActivity() {
 
     private fun initializeVariables() {
         imageView_back = findViewById(R.id.imageView_back)
-        world_eins = findViewById(R.id.button1)
-        world_zwei = findViewById(R.id.button2)
-        world_drei = findViewById(R.id.button3)
         imageView_last = findViewById(R.id.imageView_last)
         imageView_next = findViewById(R.id.imageView_next)
-
-        tvSelectedItem = findViewById(R.id.tv_selected_item)
+        imageView_coins = findViewById(R.id.imageView_coins)
         rvHorizontalPicker = findViewById(R.id.rv_horizontal_picker)
 
 
         imageView_last.visibility = View.INVISIBLE
+
+        Glide.with(this).load(R.drawable.comic_coin_edited).into(imageView_coins)
     }
 
     private fun initializeOnClickActions() {
         imageView_back.setOnClickListener { onBackPressed() }
-        world_eins.setOnClickListener { view ->
-            val myIntent = Intent(view.context, PlayActivity::class.java)
-            startActivity(myIntent)
-            overridePendingTransition(R.anim.none, R.anim.none)
-        }
-        world_zwei.setOnClickListener { view ->
-            val myIntent = Intent(view.context, PlayActivity::class.java)
-            startActivity(myIntent)
-            overridePendingTransition(R.anim.none, R.anim.none)
-        }
-        world_drei.setOnClickListener { view ->
-            val myIntent = Intent(view.context, PlayActivity::class.java)
-            startActivity(myIntent)
-            overridePendingTransition(R.anim.none, R.anim.none)
-        }
+
 
         imageView_last.setOnClickListener {
-            var new_pos: Int = current_position - 1
+            var newPos: Int = currentPosition - 1
 
             if (data.size > 0) {
-                if (new_pos < 0) {
-                    new_pos = 0
-                } else if (new_pos >= data.size) {
-                    new_pos = data.size - 1
+                if (newPos < 0) {
+                    newPos = 0
+                } else if (newPos >= data.size) {
+                    newPos = data.size - 1
                 }
 
-                rvHorizontalPicker.smoothScrollToPosition(new_pos)
+                rvHorizontalPicker.smoothScrollToPosition(newPos)
             }
         }
 
         imageView_next.setOnClickListener {
-            var new_pos: Int = current_position + 1
+            var newPos: Int = currentPosition + 1
 
             if (data.size > 0) {
-                if (new_pos < 0) {
-                    new_pos = 0
-                } else if (new_pos >= data.size) {
-                    new_pos = data.size - 1
+                if (newPos < 0) {
+                    newPos = 0
+                } else if (newPos >= data.size) {
+                    newPos = data.size - 1
                 }
 
-                rvHorizontalPicker.smoothScrollToPosition(new_pos)
+                rvHorizontalPicker.smoothScrollToPosition(newPos)
             }
         }
 
@@ -120,12 +98,13 @@ class WorldsActivity : AppCompatActivity() {
         rvHorizontalPicker.layoutManager = SliderLayoutManager(this).apply {
             callback = object : SliderLayoutManager.OnItemSelectedListener {
                 override fun onItemSelected(layoutPosition: Int) {
-                    tvSelectedItem.text = data[layoutPosition]
-                    current_position = layoutPosition
-                    if (current_position <= 0){
+
+                    currentPosition = layoutPosition
+
+                    if (currentPosition <= 0){
                         imageView_last.visibility = View.INVISIBLE
                     } else imageView_last.visibility = View.VISIBLE
-                    if (current_position >= data.size-1){
+                    if (currentPosition >= data.size-1){
                         imageView_next.visibility = View.INVISIBLE
                     } else imageView_next.visibility = View.VISIBLE
                 }
@@ -137,7 +116,15 @@ class WorldsActivity : AppCompatActivity() {
             setData(data)
             callback = object : SliderAdapter.Callback {
                 override fun onItemClicked(view: View) {
-                    rvHorizontalPicker.smoothScrollToPosition(rvHorizontalPicker.getChildLayoutPosition(view))
+                    if (rvHorizontalPicker.getChildLayoutPosition(view) != currentPosition) {
+                        rvHorizontalPicker.smoothScrollToPosition(rvHorizontalPicker.getChildLayoutPosition(view))
+                    } else {
+                        currentPosition = rvHorizontalPicker.getChildLayoutPosition(view)
+                        val myIntent = Intent(view.context, PlayActivity::class.java)
+                        startActivity(myIntent)
+                        overridePendingTransition(R.anim.none, R.anim.none)
+                    }
+
                 }
             }
         }

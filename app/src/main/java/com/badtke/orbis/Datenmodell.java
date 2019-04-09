@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -58,6 +59,16 @@ public class Datenmodell implements Serializable {
     private long timeShift;
 
 
+
+
+    private int coins;
+    private String userName;
+    private List<List<String>> aufgaben_sammlung;
+    private int currentWorld;
+    private int currentLevel;
+    private int unlockedWorlds;
+    private int[] settingsValues;
+
     private Datenmodell()
     {
         ipAdresse = "0";
@@ -75,6 +86,18 @@ public class Datenmodell implements Serializable {
         volume = 20;
         zeitStart = 0;
         timeShift = 0;
+
+
+
+
+
+        coins = 200;
+        userName = "User";
+        aufgaben_sammlung = new ArrayList<>();
+        currentWorld = 0;
+        currentLevel = 0;
+        unlockedWorlds = 0;
+        settingsValues = new int[] {};
     }
 
     public void copyData(Datenmodell dm)
@@ -99,7 +122,29 @@ public class Datenmodell implements Serializable {
         alleChannelNamen = dm.getAlleChannelNamen();
         timeShift = dm.getTimeShift();
         zeitStart = dm.getZeitStart();
+
+
+
+
+
+
+        coins = dm.coins;
+        userName = dm.userName;
+        aufgaben_sammlung = dm.aufgaben_sammlung;
+        currentWorld = dm.currentWorld;
+        currentLevel = dm.currentLevel;
+        unlockedWorlds = dm.unlockedWorlds;
+        settingsValues = dm.settingsValues;
     }
+
+
+
+
+
+
+
+
+
 
     public boolean isVolumeMuteState()
     {
@@ -290,12 +335,23 @@ public class Datenmodell implements Serializable {
         this.timeShift = 0;
     }
 
-
     public void resetAufnahme() {
         this.setPause(false);
         this.setZeitStart(0);
         this.resetTimeShift();
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected void datenmodellDeserialisieren(Context context) throws IOException, ClassNotFoundException {
@@ -321,6 +377,14 @@ public class Datenmodell implements Serializable {
         s.close();
         output.close();
     }
+
+
+
+
+
+
+
+
 
     private class ChannelList {
     }
