@@ -70,6 +70,7 @@ public class Datenmodell implements Serializable {
     private final int[] worldcosts = new int[] {2000,3000};
     private final int WerbungValue = 10;
 
+    private boolean firstBoot;
     private int coins;
     private String userName;
     private ArrayList<ArrayList<String>> aufgaben_sammlung;
@@ -103,7 +104,7 @@ public class Datenmodell implements Serializable {
 
 
 
-
+        firstBoot = true;
         coins = 500;
         userName = "User";
         aufgaben_sammlung = new ArrayList<ArrayList<String>>();
@@ -303,7 +304,15 @@ public class Datenmodell implements Serializable {
         currentAufgabe = newAufgabe;
     }
 
-
+    public boolean isFirstBoot() {
+        return firstBoot;
+    }
+    public void noMoreFirstBoot() {
+        firstBoot = false;
+    }
+    public void resetFirstBoot(){
+        firstBoot = true;
+    }
 
 
 

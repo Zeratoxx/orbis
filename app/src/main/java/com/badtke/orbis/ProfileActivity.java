@@ -14,7 +14,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageView  imageView_back;
     private TextView textView_score;
-
+    private TextView textView_name;
 
 
 
@@ -71,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         textView_score.setText(String.valueOf(myData.getCoins()));
+        textView_name.setText(myData.getUserName());
     }
 
 
@@ -110,6 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void initializeVariables() {
         imageView_back = (ImageView) findViewById(R.id.imageView_back);
         textView_score = (TextView) findViewById(R.id.textView_score);
+        textView_name = (TextView) findViewById(R.id.textView_name);
 
     }
 

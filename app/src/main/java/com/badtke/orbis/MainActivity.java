@@ -1,6 +1,9 @@
 package com.badtke.orbis;
 
 import com.opencsv.CSVReader;
+
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -8,9 +11,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ArrayList<String>> aufgabenSammlung = new ArrayList<ArrayList<String>>();
     private final Integer fileName = R.raw.aufgaben_sammlung;
 
+    private String m_Text = "";
 
 
 
@@ -108,6 +116,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       /* // Make us non-modal, so that others can receive touch events.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+
+        // ...but notify us that it happened.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH, WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
+
+        // Note that flag changes must happen *before* the content view is set.*/
         setContentView(R.layout.activity_main);
 
 
@@ -120,10 +135,98 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*@Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // If we've received a touch notification that the user has touched
+        // outside the app, finish the activity.
+        if (MotionEvent.ACTION_OUTSIDE == event.getAction()) {
+            finish();
+            return true;
+        }
+
+        // Delegate everything else to Activity.
+        return super.onTouchEvent(event);
+    }*/
+
     @Override
     protected void onStart() {
         super.onStart();
+        if(myData.isFirstBoot()){
+//*
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Benutzername");
+            builder.setMessage("Bitte geben Sie Ihren Benutzernamen ein: ");
+// Set up the input
+            final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+
+// Set up the buttons
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+
+            final Dialog dialog = builder.create();
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+
+            ((AlertDialog) dialog).getButton(Dialog.BUTTON_POSITIVE).setOnClickListener(
+                    new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            //Do stuff, possibly set wantToCloseDialog to true then...
+                            if(!(input.getText().toString().equals(""))) {
+                                myData.setUserName(input.getText().toString());
+                                dialog.dismiss();
+                            } else
+                            Toast.makeText(v.getContext(), "Bitte geben Sie etwas ein!", Toast.LENGTH_SHORT).show();
+                            //else dialog stays open. Make sure you have an obvious way to
+                            // close the dialog especially if you set cancellable to false.
+                        }
+                    }
+            );
+//*/
+/*
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+            builder2.setMessage("Test for preventing dialog close");
+            builder2.setPositiveButton("Test",
+                    new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            //Do nothing here because we override this button later to change the close behaviour.
+                            //However, we still need this because on older versions of Android unless we
+                            //pass a handler the button doesn't get instantiated
+                        }
+                    });
+            final AlertDialog dialog = builder2.create();
+            dialog.show();
+//Overriding the handler immediately after show is probably a better approach than OnShowListener as described below
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Boolean wantToCloseDialog = false;
+                    //Do stuff, possibly set wantToCloseDialog to true then...
+                    if(wantToCloseDialog)
+                        dialog.dismiss();
+                    //else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
+                }
+            });
+
+*/
+
+            myData.noMoreFirstBoot();
+        }
     }
 
     public void initializeVariables() {
