@@ -24,7 +24,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_level" />
 
     <ImageView
         android:id="@+id/imageView_back"
@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView_back" />
 
     <TextView
-        android:id="@+id/textView_level"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -114,30 +114,29 @@
         android:background="@drawable/rounded_buttons"
         android:fontFamily="sans-serif-thin"
         android:paddingLeft="32dp"
-        android:paddingTop="6dp"
 
+        android:paddingTop="6dp"
         android:paddingRight="32dp"
         android:paddingBottom="12dp"
-        android:text="@string/done"
+        android:text="@string/geschafft"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_aufgabe"
-        app:layout_constraintVertical_bias="0.57" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_bonusCoins" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:text="12"
         android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_level"
-        app:layout_constraintStart_toStartOf="@+id/textView_level"
-        app:layout_constraintTop_toBottomOf="@+id/textView_level" />
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -156,5 +155,30 @@
         app:layout_constraintTop_toTopOf="@+id/textView_aufgabe"
         app:maxImageSize="48dp"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+    <TextView
+        android:id="@+id/textView_bonusCoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_aufgabe" />
+
+    <ImageView
+        android:id="@+id/imageView_bonusCoins"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:padding="14dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_bonusCoins"
+        app:layout_constraintStart_toEndOf="@+id/textView_bonusCoins"
+        app:layout_constraintTop_toTopOf="@+id/textView_bonusCoins"
+        app:srcCompat="@drawable/comic_coin_edited" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

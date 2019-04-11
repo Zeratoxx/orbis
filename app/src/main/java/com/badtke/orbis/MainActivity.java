@@ -34,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab_settings;
 
 
-    private ArrayList<ArrayList<String>> aufgabenSammlung = new ArrayList<ArrayList<String>>();
-    private final Integer fileName = R.raw.aufgaben_sammlung;
-
-    private String m_Text = "";
-
-
 
 
     //---------- Serialisierung --------------
@@ -53,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
             myData.datenmodellDeserialisieren(getApplicationContext());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Deserialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
 
         /*new HttpRequestAsync().execute("debug=1");
@@ -89,6 +79,89 @@ public class MainActivity extends AppCompatActivity {
         {
             buttonZoom.setChecked(false);
         }*/
+
+
+
+
+
+
+        if(myData.isFirstBoot()){
+//*
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Benutzername");
+            builder.setMessage("Bitte geben Sie Ihren Benutzernamen ein: ");
+// Set up the input
+            final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+
+// Set up the buttons
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+
+            final Dialog dialog = builder.create();
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+
+            ((AlertDialog) dialog).getButton(Dialog.BUTTON_POSITIVE).setOnClickListener(
+                    new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            //Do stuff, possibly set wantToCloseDialog to true then...
+                            if(!(input.getText().toString().equals(""))) {
+                                myData.setUserName(input.getText().toString());
+                                myData.noMoreFirstBoot();
+                                dialog.dismiss();
+                            } else
+                                Toast.makeText(v.getContext(), "Bitte geben Sie etwas ein!", Toast.LENGTH_SHORT).show();
+                            //else dialog stays open. Make sure you have an obvious way to
+                            // close the dialog especially if you set cancellable to false.
+                        }
+                    }
+            );
+//*/
+/*
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+            builder2.setMessage("Test for preventing dialog close");
+            builder2.setPositiveButton("Test",
+                    new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            //Do nothing here because we override this button later to change the close behaviour.
+                            //However, we still need this because on older versions of Android unless we
+                            //pass a handler the button doesn't get instantiated
+                        }
+                    });
+            final AlertDialog dialog = builder2.create();
+            dialog.show();
+//Overriding the handler immediately after show is probably a better approach than OnShowListener as described below
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Boolean wantToCloseDialog = false;
+                    //Do stuff, possibly set wantToCloseDialog to true then...
+                    if(wantToCloseDialog)
+                        dialog.dismiss();
+                    //else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
+                }
+            });
+
+*/
+
+
+        }
     }
 
 
@@ -99,10 +172,6 @@ public class MainActivity extends AppCompatActivity {
             myData.datenmodellSerialisieren(getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Serialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
     }
 
@@ -151,82 +220,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(myData.isFirstBoot()){
-//*
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Benutzername");
-            builder.setMessage("Bitte geben Sie Ihren Benutzernamen ein: ");
-// Set up the input
-            final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
-            builder.setView(input);
-
-// Set up the buttons
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-
-            final Dialog dialog = builder.create();
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.show();
-
-            ((AlertDialog) dialog).getButton(Dialog.BUTTON_POSITIVE).setOnClickListener(
-                    new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            //Do stuff, possibly set wantToCloseDialog to true then...
-                            if(!(input.getText().toString().equals(""))) {
-                                myData.setUserName(input.getText().toString());
-                                dialog.dismiss();
-                            } else
-                            Toast.makeText(v.getContext(), "Bitte geben Sie etwas ein!", Toast.LENGTH_SHORT).show();
-                            //else dialog stays open. Make sure you have an obvious way to
-                            // close the dialog especially if you set cancellable to false.
-                        }
-                    }
-            );
-//*/
-/*
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-            builder2.setMessage("Test for preventing dialog close");
-            builder2.setPositiveButton("Test",
-                    new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            //Do nothing here because we override this button later to change the close behaviour.
-                            //However, we still need this because on older versions of Android unless we
-                            //pass a handler the button doesn't get instantiated
-                        }
-                    });
-            final AlertDialog dialog = builder2.create();
-            dialog.show();
-//Overriding the handler immediately after show is probably a better approach than OnShowListener as described below
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    Boolean wantToCloseDialog = false;
-                    //Do stuff, possibly set wantToCloseDialog to true then...
-                    if(wantToCloseDialog)
-                        dialog.dismiss();
-                    //else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
-                }
-            });
-
-*/
-
-            myData.noMoreFirstBoot();
-        }
     }
 
     public void initializeVariables() {
@@ -295,46 +288,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-    /** @brief Initial read of all tasks to do.
-     * Reads the external file of all tasks and saves it to an array.
-     * Adds a field to every Line with the value "unfinished".
-     *
-     * @return void
-     */
-    private void aufgabenEinlesen() {
-        try {
-            CSVReader reader = new CSVReader(new InputStreamReader(getResources().openRawResource(fileName)), ';');
-            String [] nextLine;
-            int line = 0;
-            while ((nextLine = reader.readNext()) != null) {
-                // nextLine[] is an array of values from the line
-
-                aufgabenSammlung.add(new ArrayList<String>());
-
-                for (String aNextLine : nextLine) {
-
-                    aufgabenSammlung.get(line).add(aNextLine); //one Line of aufgabenSammlung:
-                }
-                //Log.d("VariableTag", nextLine[0]);
-                aufgabenSammlung.get(line).add("unfinished");
-
-                line++;
-            }
-
-            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, aufgabenSammlung.get(0).get(0), Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "The specified file was not found.", Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
 
 

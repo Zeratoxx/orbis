@@ -24,9 +24,6 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-
-
-
     //---------- Serialisierung --------------
 
     Datenmodell     myData = Datenmodell.getInstance();

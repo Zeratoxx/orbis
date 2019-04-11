@@ -37,16 +37,8 @@ class WorldsActivity : AppCompatActivity() {
             myData.datenmodellDeserialisieren(applicationContext)
         } catch (e: IOException) {
             e.printStackTrace()
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Deserialisierung")
-            builder.setMessage("Fehlgeschlagen!")
-            val dialog = builder.show()
         } catch (e: ClassNotFoundException) {
             e.printStackTrace()
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Deserialisierung")
-            builder.setMessage("Fehlgeschlagen!")
-            val dialog = builder.show()
         }
 
 
@@ -92,10 +84,6 @@ class WorldsActivity : AppCompatActivity() {
             myData.datenmodellSerialisieren(applicationContext)
         } catch (e: IOException) {
             e.printStackTrace()
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Serialisierung")
-            builder.setMessage("Fehlgeschlagen!")
-            val dialog = builder.show()
         }
 
     }

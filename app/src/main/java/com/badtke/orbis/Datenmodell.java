@@ -1,11 +1,9 @@
 package com.badtke.orbis;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 
-import android.content.res.Resources;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,9 +13,10 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -37,73 +36,28 @@ public class Datenmodell implements Serializable {
 
     //******** Attribute ********
 
-//    private String ipAdresse;
-//    private boolean pipProgrammSollGeandertWerden;
-//    private boolean favoritenSollenAngezeigtWerden;
-//    private boolean volumeMuteState;  //true = muted, false = not muted
-//    private boolean zoomState;        //true = 1 = zoom an
-//    private boolean pipActivityAktiv; //true = PicInPic Mode active
-//    private boolean standby;          //true = standby active
-//    private boolean pause;            //true = pause active
-//    private int volume;
-//    private int channelMainPosition;
-//    private int channelPipPosition;
-//
-//    private ChannelList myChannelList;
-//
-//    private transient MyAdapter channelAdapter;
-//    private transient MySortAdapter channelSortAdapter;
-//
-//    private ArrayList<String> alleProgrammNamen;
-//    private ArrayList<String> alleChannelNamen;
-//    private boolean progFavState[];
-//    private ArrayList<Integer> favoritenIndex;
-//    private ArrayList<String> favoriten;
-//
-//
-//    private long zeitStart;
-//    private long timeShift;
-
-
-
 
     private final int[] worldcosts = new int[] {2000,3000};
     private final int WerbungValue = 10;
+    private final long TimeBetweenTwoAufgabenInMilliseconds = 10000;
+    private final String fileName = "res/raw/aufgaben_sammlung.txt";
+    Date date= new Date();
 
     private boolean firstBoot;
     private int coins;
     private String userName;
     private ArrayList<ArrayList<String>> aufgaben_sammlung;
-    private final Integer fileName = R.raw.aufgaben_sammlung;
     private int currentWorld;
     private int currentLevel;
     private int unlockedWorlds;
     private int[] settingsValues;
     private int currentAufgabe;
+    private long time;
+    private Timestamp lastAufgabeDone;
 
 
     private Datenmodell()
     {
-
-//        ipAdresse = "0";
-//        channelMainPosition = -1;
-//        channelPipPosition = -1;
-//        favoritenSollenAngezeigtWerden = false;
-//        volumeMuteState = false;
-//        zoomState = false;
-//        pipActivityAktiv = false;
-//        standby = false;
-//        alleProgrammNamen = new ArrayList<String>();
-//        favoritenIndex = new ArrayList<Integer>();
-//        favoriten = new ArrayList<String>();
-//        alleChannelNamen = new ArrayList<String>();
-//        volume = 20;
-//        zeitStart = 0;
-//        timeShift = 0;
-
-
-
-
         firstBoot = true;
         coins = 500;
         userName = "User";
@@ -113,38 +67,18 @@ public class Datenmodell implements Serializable {
         unlockedWorlds = 0;
         settingsValues = new int[] {};
         currentAufgabe = 0;
-        //aufgabenEinlesen();
+        time = 0;
+        lastAufgabeDone = new Timestamp(0);
+        aufgabenEinlesen(); //WICHTIG!!
+
+        setNewAufgabeOrReturnFalse();
+
     }
 
     public void copyData(Datenmodell dm)
     {
-//        ipAdresse = dm.getIpAdresse();
-//        pipProgrammSollGeandertWerden = dm.PipProgrammSollGeandertWerden();
-//        favoritenSollenAngezeigtWerden = dm.FavoritenSollenAngezeigtWerden();
-//        volumeMuteState = dm.isVolumeMuteState();
-//        zoomState = dm.isZoomState();
-//        pipActivityAktiv = dm.isPipActivityAktiv();
-//        standby = dm.isStandby();
-//        pause = dm.isPause();
-//        volume = dm.getVolume();
-//        channelMainPosition = dm.getChannelMainPosition();
-//        channelPipPosition = dm.getChannelPipPosition();
-//
-//        myChannelList = dm.getMyChannelList();
-//        alleProgrammNamen = dm.getAlleProgrammNamen();
-//        progFavState = dm.getprogFavStateFull();
-//        favoriten = dm.getFavoriten();
-//        favoritenIndex = dm.getFavoritenIndex();
-//        alleChannelNamen = dm.getAlleChannelNamen();
-//        timeShift = dm.getTimeShift();
-//        zeitStart = dm.getZeitStart();
-
-
-
-
-
-
         coins = dm.coins;
+        firstBoot = dm.firstBoot;
         userName = dm.userName;
         aufgaben_sammlung = dm.aufgaben_sammlung;
         currentWorld = dm.currentWorld;
@@ -152,6 +86,8 @@ public class Datenmodell implements Serializable {
         unlockedWorlds = dm.unlockedWorlds;
         settingsValues = dm.settingsValues;
         currentAufgabe = dm.currentAufgabe;
+        lastAufgabeDone = dm.lastAufgabeDone;
+        time = dm.time;
     }
 
 
@@ -226,6 +162,9 @@ public class Datenmodell implements Serializable {
     public String getAufgabe(int nummerDerAufgabe){
         return aufgaben_sammlung.get(nummerDerAufgabe).get(1);
     }
+    public String getAufgabe(){
+        return aufgaben_sammlung.get(getCurrentAufgabe()).get(1);
+    }
     public String getAufgabenWert(int nummerDerAufgabe){
         return aufgaben_sammlung.get(nummerDerAufgabe).get(2);
     }
@@ -235,11 +174,14 @@ public class Datenmodell implements Serializable {
     public boolean aufgabeHatInfo(int nummerDerAufgabe){
         return aufgaben_sammlung.get(nummerDerAufgabe).get(3).equals("*");
     }
-    public boolean aufgabeSchonGeschafft(int nummerDerAufgabe) {
+    public boolean aufgabeAlreadyFinished(int nummerDerAufgabe) {
         return aufgaben_sammlung.get(nummerDerAufgabe).get(4).equals("finished");
     }
-    public void aufgabeGeschafft(int nummerDerAufgabe){
-        aufgaben_sammlung.get(nummerDerAufgabe).set(4,"finished");
+    public void setAufgabeFinished(int numberOfAufgabe){
+        aufgaben_sammlung.get(numberOfAufgabe).set(4,"finished");
+    }
+    public void setCurrentAufgabeFinished(){
+        setAufgabeFinished(currentAufgabe);
     }
 
     public int getCurrentWorld(){
@@ -291,17 +233,20 @@ public class Datenmodell implements Serializable {
     public void setCurrentAufgabe(int newAufgabe){
         currentAufgabe = newAufgabe;
     }
-    public void randomizeCurrentAufgabe() {
+    private int randomizeNextCurrentAufgabe() {
         int difficulty = getCurrentWorld() + 1;
 
-        Random zahl = new Random();
+        Random randomizer = new Random();
         int newAufgabe;
 
         do {
-            newAufgabe = zahl.nextInt(aufgaben_sammlung.size());
-        } while (aufgabeSchonGeschafft(newAufgabe) && Integer.parseInt(getAufgabenSchwierigkeit(newAufgabe)) != difficulty);
+            newAufgabe = randomizer.nextInt(aufgaben_sammlung.size());
+        } while (aufgabeAlreadyFinished(newAufgabe) && Integer.parseInt(getAufgabenSchwierigkeit(newAufgabe)) != difficulty);
 
-        currentAufgabe = newAufgabe;
+        return newAufgabe;
+    }
+    public int getAmountOfAufgaben() {
+        return aufgaben_sammlung.size();
     }
 
     public boolean isFirstBoot() {
@@ -313,6 +258,131 @@ public class Datenmodell implements Serializable {
     public void resetFirstBoot(){
         firstBoot = true;
     }
+
+    private void setLastAufgabeDone(long ms){
+        lastAufgabeDone = new Timestamp(ms);
+    }
+    private void setLastAufgabeDone(Timestamp ts){
+        lastAufgabeDone = ts;
+    }
+    public Timestamp getTimestampOfLastAufgabeDone(){
+        if(lastAufgabeDone!=null)
+            return lastAufgabeDone;
+        else return new Timestamp(0);
+
+    }
+
+    public boolean setNewAufgabeOrReturnFalse(){
+        boolean i = false;
+        if( newAufgabeIsAvailable() ){
+            currentAufgabe = randomizeNextCurrentAufgabe();
+            currentLevel++;
+            i = true;
+        }
+        return i;
+    }
+    public ArrayList<String> getNewAufgabe(){
+        setNewAufgabeOrReturnFalse();
+
+        return getAufgabenSammlungReihe(currentAufgabe);
+    }
+    public void aufgabeGeschafft(){
+        setCurrentAufgabeFinished();
+        addToCoins(Integer.valueOf(getAufgabenWert(getCurrentAufgabe())));
+        lastAufgabeDone = new Timestamp(date.getTime());
+
+    }
+
+    public boolean newAufgabeIsAvailable() {
+        return (date.getTime() - lastAufgabeDone.getTime()) >= TimeBetweenTwoAufgabenInMilliseconds || lastAufgabeDone.equals(new Timestamp(0));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /** @brief Initial read of all tasks to do.
+     * Reads the external file of all tasks and saves it to an array.
+     * Adds a field to every Line with the value "unfinished".
+     *
+     * @return void
+     */
+    private void aufgabenEinlesen() {
+        try {
+            CSVReader reader = new CSVReader(new InputStreamReader(Objects.requireNonNull(this.getClass().getClassLoader()).getResourceAsStream(fileName)), ';');
+            String [] nextLine;
+            int line = 0;
+            while ((nextLine = reader.readNext()) != null) {
+                // nextLine[] is an array of values from the line
+
+                aufgaben_sammlung.add(new ArrayList<String>());
+
+                for (String aNextLine : nextLine) {
+
+                    aufgaben_sammlung.get(line).add(aNextLine); //one Line of aufgabenSammlung:
+                }
+                //Log.d("VariableTag", nextLine[0]);
+                aufgaben_sammlung.get(line).add("unfinished");
+
+                line++;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+
+    protected void datenmodellDeserialisieren(Context context) throws IOException, ClassNotFoundException {
+        FileInputStream in = context.openFileInput("datei.ser");
+        ObjectInputStream s = new ObjectInputStream(in);
+        Datenmodell eingelesenesDatenmodell = (Datenmodell) s.readObject();
+        this.copyData(eingelesenesDatenmodell);
+        s.close();
+        in.close();
+    }
+
+    protected void datenmodellSerialisieren(Context context) throws IOException {
+        FileOutputStream output;
+        try{
+            output = context.openFileOutput("datei.ser", MODE_PRIVATE);
+        } catch (FileNotFoundException e)
+        {
+            File file = new File(context.getFilesDir(), "datei.ser");
+            output = context.openFileOutput("datei.ser", MODE_PRIVATE);
+        }
+        ObjectOutputStream s = new ObjectOutputStream(output);
+        s.writeObject(this);
+        s.close();
+        output.close();
+
+    }
+
+
 
 
 
@@ -525,84 +595,6 @@ public class Datenmodell implements Serializable {
     }
 */
 
-
-
-
-
-
-
-
-
-
-
-
-    protected void datenmodellDeserialisieren(Context context) throws IOException, ClassNotFoundException {
-        FileInputStream in = context.openFileInput("datei.ser");
-        ObjectInputStream s = new ObjectInputStream(in);
-        Datenmodell eingelesenesDatenmodell = (Datenmodell) s.readObject();
-        this.copyData(eingelesenesDatenmodell);
-        s.close();
-        in.close();
-
-
-        //Toast.makeText(context, "Deserialisierung Done", Toast.LENGTH_SHORT).show(); //just devFeedback
-
-    }
-
-    protected void datenmodellSerialisieren(Context context) throws IOException {
-        FileOutputStream output;
-        try{
-            output = context.openFileOutput("datei.ser", MODE_PRIVATE);
-        } catch (FileNotFoundException e)
-        {
-            File file = new File(context.getFilesDir(), "datei.ser");
-            output = context.openFileOutput("datei.ser", MODE_PRIVATE);
-        }
-        ObjectOutputStream s = new ObjectOutputStream(output);
-        s.writeObject(this);
-        s.close();
-        output.close();
-
-        //Toast.makeText(context, "Serialisierung Done", Toast.LENGTH_SHORT).show(); //just devFeedback
-    }
-
-
-
-
-
-/*
-    /** @brief Initial read of all tasks to do.
-     * Reads the external file of all tasks and saves it to an array.
-     * Adds a field to every Line with the value "unfinished".
-     *
-     * @return void
-     */ /*
-    private void aufgabenEinlesen() {
-        try {
-            File initialFile = new File(fileName)
-            CSVReader reader = new CSVReader(new InputStreamReader(fileName), ';');
-            String [] nextLine;
-            int line = 0;
-            while ((nextLine = reader.readNext()) != null) {
-                // nextLine[] is an array of values from the line
-
-                aufgaben_sammlung.add(new ArrayList<String>());
-
-                for (String aNextLine : nextLine) {
-
-                    aufgaben_sammlung.get(line).add(aNextLine); //one Line of aufgabenSammlung:
-                }
-                //Log.d("VariableTag", nextLine[0]);
-                aufgaben_sammlung.get(line).add("unfinished");
-
-                line++;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }*/
 
 
    /* private class ChannelList {

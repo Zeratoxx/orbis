@@ -1,5 +1,6 @@
 package com.badtke.orbis;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -21,10 +23,11 @@ public class PlayActivity extends AppCompatActivity {
     private Button  button_done;
     private ImageView  imageView_back;
     private ImageView  imageView_home;
+    private ImageView imageView_coins;
+    private ImageView imageView_bonusCoins;
+    private TextView textView_bonusCoins;
     private TextView textView_score;
-
-
-
+    private TextView textView_level;
 
 
 
@@ -32,6 +35,7 @@ public class PlayActivity extends AppCompatActivity {
 
     Datenmodell     myData = Datenmodell.getInstance();
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
         super.onResume();
@@ -39,10 +43,6 @@ public class PlayActivity extends AppCompatActivity {
             myData.datenmodellDeserialisieren(getApplicationContext());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Deserialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
 
         /*new HttpRequestAsync().execute("debug=1");
@@ -79,6 +79,9 @@ public class PlayActivity extends AppCompatActivity {
 
 
         textView_score.setText(String.valueOf(myData.getCoins()));
+        textView_aufgabe.setText(myData.getAufgabe());
+        textView_level.setText(String.valueOf(myData.getCurrentLevel()));
+        textView_bonusCoins.setText("+"+String.valueOf(myData.getAufgabenWert(myData.getCurrentAufgabe())));
     }
 
 
@@ -89,10 +92,6 @@ public class PlayActivity extends AppCompatActivity {
             myData.datenmodellSerialisieren(getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Serialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
     }
 
@@ -119,10 +118,15 @@ public class PlayActivity extends AppCompatActivity {
         textView_aufgabe = (TextView) findViewById(R.id.textView_aufgabe);
         imageView_back = (ImageView) findViewById(R.id.imageView_back);
         imageView_home = (ImageView) findViewById(R.id.imageView_home);
+        imageView_coins = (ImageView) findViewById(R.id.imageView_coins);
+        imageView_bonusCoins = (ImageView) findViewById(R.id.imageView_bonusCoins);
         button_done = (Button) findViewById(R.id.button_done);
         textView_score = (TextView) findViewById(R.id.textView_score);
+        textView_level = (TextView) findViewById(R.id.textView_level);
+        textView_bonusCoins = (TextView) findViewById(R.id.textView_bonusCoins);
 
-        textView_aufgabe.setText("Sammle weißes Plastik vom Boden auf, um diese zu entsorgen.");
+        Glide.with(this).load(R.drawable.comic_coin_edited).into(imageView_coins);
+        Glide.with(this).load(R.drawable.comic_coin_edited).into(imageView_bonusCoins);
     }
 
     public void initializeOnClickActions() {
@@ -143,6 +147,7 @@ public class PlayActivity extends AppCompatActivity {
         button_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myData.aufgabeGeschafft();
                 Intent myIntent = new Intent(view.getContext(), PlayedActivity.class);
                 startActivity(myIntent);
                 overridePendingTransition(R.anim.none, R.anim.none);

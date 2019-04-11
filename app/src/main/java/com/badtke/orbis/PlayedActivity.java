@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -20,10 +21,9 @@ public class PlayedActivity extends AppCompatActivity {
     private TextView textView_done;
     private ImageView  imageView_back;
     private ImageView  imageView_home;
+    private ImageView imageView_coins;
     private TextView textView_score;
-
-
-
+    private TextView textView_level;
 
 
 
@@ -38,10 +38,6 @@ public class PlayedActivity extends AppCompatActivity {
             myData.datenmodellDeserialisieren(getApplicationContext());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Deserialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
 
         /*new HttpRequestAsync().execute("debug=1");
@@ -78,6 +74,7 @@ public class PlayedActivity extends AppCompatActivity {
 
 
         textView_score.setText(String.valueOf(myData.getCoins()));
+        textView_level.setText(String.valueOf(myData.getCurrentLevel()));
     }
 
 
@@ -88,10 +85,6 @@ public class PlayedActivity extends AppCompatActivity {
             myData.datenmodellSerialisieren(getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Serialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
     }
 
@@ -118,9 +111,13 @@ public class PlayedActivity extends AppCompatActivity {
         textView_done = (TextView) findViewById(R.id.textView_done);
         imageView_back = (ImageView) findViewById(R.id.imageView_back);
         imageView_home = (ImageView) findViewById(R.id.imageView_home);
+        imageView_coins = (ImageView) findViewById(R.id.imageView_coins);
         textView_score = (TextView) findViewById(R.id.textView_score);
+        textView_level = (TextView) findViewById(R.id.textView_level);
 
         textView_done.setText("Glückwunsch! Du hast die Welt sauberer gemacht!");
+        Glide.with(this).load(R.drawable.comic_coin_edited).into(imageView_coins);
+
     }
 
     public void initializeOnClickActions() {

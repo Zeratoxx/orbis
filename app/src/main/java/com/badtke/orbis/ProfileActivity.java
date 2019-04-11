@@ -15,9 +15,8 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView  imageView_back;
     private TextView textView_score;
     private TextView textView_name;
-
-
-
+    private TextView textView_doneDone;
+    private TextView textView_notDone;
 
 
 
@@ -32,10 +31,6 @@ public class ProfileActivity extends AppCompatActivity {
             myData.datenmodellDeserialisieren(getApplicationContext());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Deserialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
 
         /*new HttpRequestAsync().execute("debug=1");
@@ -72,6 +67,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         textView_score.setText(String.valueOf(myData.getCoins()));
         textView_name.setText(myData.getUserName());
+        textView_doneDone.setText(String.valueOf(myData.getCurrentLevel()-1)); // minus 1 bc current level isnt done yet
+        textView_notDone.setText(String.valueOf(myData.getAmountOfAufgaben() - (myData.getCurrentLevel() - 1))); // minus 1 bc current level isnt done yet
     }
 
 
@@ -82,10 +79,6 @@ public class ProfileActivity extends AppCompatActivity {
             myData.datenmodellSerialisieren(getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Serialisierung");
-            builder.setMessage("Fehlgeschlagen!");
-            AlertDialog dialog = builder.show();
         }
     }
 
@@ -112,6 +105,8 @@ public class ProfileActivity extends AppCompatActivity {
         imageView_back = (ImageView) findViewById(R.id.imageView_back);
         textView_score = (TextView) findViewById(R.id.textView_score);
         textView_name = (TextView) findViewById(R.id.textView_name);
+        textView_doneDone = (TextView) findViewById(R.id.textView_doneDone);
+        textView_notDone = (TextView) findViewById(R.id.textView_notDone);
 
     }
 

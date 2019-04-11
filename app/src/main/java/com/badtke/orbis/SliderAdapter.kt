@@ -36,13 +36,23 @@ class SliderAdapter : RecyclerView.Adapter<SliderItemViewHolder>() {
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: SliderItemViewHolder, position: Int) {
 
-        if (position == 0) {
-            holder.tvItem?.setImageResource(R.drawable.comic_badworld_croped)
-        } else {
+        if (position == 0)
+            holder.tvItem?.setImageResource(R.drawable.comic_badworld2_croped)
+        else if (position == 1)
             holder.tvItem?.setImageResource(R.drawable.comic_world_croped)
-        }
-        holder.textView_worldname?.text = "Welt " + data[position]
+        else if (position == 2)
+            holder.tvItem?.setImageResource(R.drawable.comic_world_croped)
+        else
+            holder.tvItem?.setImageResource(R.drawable.comic_world_croped)
 
+        if (position == 0)
+            holder.textView_worldname?.text = "Einfach"
+        else if (position == 1)
+            holder.textView_worldname?.text = "Mittel"
+        else if (position == 2)
+            holder.textView_worldname?.text = "Schwer"
+        else
+            holder.textView_worldname?.text = "Sonstiges"
     }
 
     fun setData(data: ArrayList<String>) {
