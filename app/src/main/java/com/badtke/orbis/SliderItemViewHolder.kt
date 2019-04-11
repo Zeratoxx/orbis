@@ -12,4 +12,5 @@ class SliderItemViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!
 
     val tvItem: ImageView? = itemView?.findViewById(R.id.tv_item)
     val textView_worldname: TextView? = itemView?.findViewById(R.id.textView_worldname)
+    val imageView_locked: ImageView? = itemView?.findViewById(R.id.imageView_locked)
 }

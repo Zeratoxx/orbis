@@ -45,6 +45,18 @@ class SliderAdapter : RecyclerView.Adapter<SliderItemViewHolder>() {
         else
             holder.tvItem?.setImageResource(R.drawable.comic_world_croped)
 
+
+
+
+        if(position == 1) //&& unlockedWorlds == 1
+            holder.imageView_locked?.visibility = View.VISIBLE
+        else if (position == 2) //&& unlockedWorlds == 2
+            holder.imageView_locked?.visibility = View.VISIBLE
+        else
+            holder.imageView_locked?.visibility = View.INVISIBLE
+
+
+
         if (position == 0)
             holder.textView_worldname?.text = "Einfach"
         else if (position == 1)
@@ -54,6 +66,7 @@ class SliderAdapter : RecyclerView.Adapter<SliderItemViewHolder>() {
         else
             holder.textView_worldname?.text = "Sonstiges"
     }
+
 
     fun setData(data: ArrayList<String>) {
         this.data.clear()

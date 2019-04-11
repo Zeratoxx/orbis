@@ -49,40 +49,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        /*new HttpRequestAsync().execute("debug=1");
-        if(myData.isVolumeMuteState()) {
-            slider.setProgress(0);
-            aktuelleLautstarke.setText("0");
-            imageButtonMute.setImageResource(R.drawable.ic_volume_off);
-        } else {
-            slider.setProgress(myData.getVolume());
-            aktuelleLautstarke.setText(Integer.toString(myData.getVolume()));
-            imageButtonMute.setImageResource(R.drawable.ic_volume_up);
-        }
-        if(myData.getChannelMainPosition() != -1) { buttonSender.setText(myData.getAlleProgrammNamen().get(myData.getChannelMainPosition())); }
-        else { buttonSender.setText("Sender"); }
-        if(myData.isPause())
-        {
-            buttonPause.setText(R.string.programm_weiter);
-            buttonPause.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.ic_media_play, 0);
-        }
-        else
-        {
-            buttonPause.setText(R.string.programm_pausieren);
-            buttonPause.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.ic_media_pause, 0);
-        }
-        if(myData.isZoomState())
-        {
-            buttonZoom.setChecked(true);
-        }
-        else
-        {
-            buttonZoom.setChecked(false);
-        }*/
-
-
-
-
 
 
         if(myData.isFirstBoot()){
@@ -204,18 +170,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*@Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // If we've received a touch notification that the user has touched
-        // outside the app, finish the activity.
-        if (MotionEvent.ACTION_OUTSIDE == event.getAction()) {
-            finish();
-            return true;
-        }
-
-        // Delegate everything else to Activity.
-        return super.onTouchEvent(event);
-    }*/
 
     @Override
     protected void onStart() {
@@ -236,11 +190,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), ProfileActivity.class);
-                //Bundle data = new Bundle();
-                //data.putSerializable("senderliste", newSenderList);
-                //data.putString("ip", ipAdress);
-                //data.putString("port", port);
-                //myIntent.putExtra("myBundle", data);
                 startActivity(myIntent);
                 overridePendingTransition(R.anim.none, R.anim.none);
 
@@ -254,11 +203,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), SettingsActivity.class);
-                //Bundle data = new Bundle();
-                //data.putSerializable("senderliste", newSenderList);
-                //data.putString("ip", ipAdress);
-                //data.putString("port", port);
-                //myIntent.putExtra("myBundle", data);
                 startActivity(myIntent);
                 overridePendingTransition(R.anim.none, R.anim.none);
 
@@ -272,11 +216,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), WorldsActivity.class);
-                //Bundle data = new Bundle();
-                //data.putSerializable("senderliste", newSenderList);
-                //data.putString("ip", ipAdress);
-                //data.putString("port", port);
-                //myIntent.putExtra("myBundle", data);
                 startActivity(myIntent);
                 overridePendingTransition(R.anim.none, R.anim.none);
             }

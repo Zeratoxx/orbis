@@ -41,7 +41,7 @@ public class Datenmodell implements Serializable {
     private final int WerbungValue = 10;
     private final long TimeBetweenTwoAufgabenInMilliseconds = 10000;
     private final String fileName = "res/raw/aufgaben_sammlung.txt";
-    Date date= new Date();
+
 
     private boolean firstBoot;
     private int coins;
@@ -63,7 +63,7 @@ public class Datenmodell implements Serializable {
         userName = "User";
         aufgaben_sammlung = new ArrayList<ArrayList<String>>();
         currentWorld = 0;
-        currentLevel = 0;
+        currentLevel = 1;
         unlockedWorlds = 0;
         settingsValues = new int[] {};
         currentAufgabe = 0;
@@ -71,7 +71,6 @@ public class Datenmodell implements Serializable {
         lastAufgabeDone = new Timestamp(0);
         aufgabenEinlesen(); //WICHTIG!!
 
-        setNewAufgabeOrReturnFalse();
 
     }
 
@@ -103,7 +102,10 @@ public class Datenmodell implements Serializable {
 
 
 
-
+    private long getCurrentTimeInMs(){
+        Date date= new Date();
+        return date.getTime();
+    }
 
 
 
@@ -238,10 +240,11 @@ public class Datenmodell implements Serializable {
 
         Random randomizer = new Random();
         int newAufgabe;
-
+        int temp;
         do {
             newAufgabe = randomizer.nextInt(aufgaben_sammlung.size());
-        } while (aufgabeAlreadyFinished(newAufgabe) && Integer.parseInt(getAufgabenSchwierigkeit(newAufgabe)) != difficulty);
+            temp = Integer.parseInt(getAufgabenSchwierigkeit(newAufgabe));
+        } while (aufgabeAlreadyFinished(newAufgabe) ||  temp != difficulty);
 
         return newAufgabe;
     }
@@ -259,11 +262,8 @@ public class Datenmodell implements Serializable {
         firstBoot = true;
     }
 
-    private void setLastAufgabeDone(long ms){
-        lastAufgabeDone = new Timestamp(ms);
-    }
-    private void setLastAufgabeDone(Timestamp ts){
-        lastAufgabeDone = ts;
+    private void setLastAufgabeDone(){
+        lastAufgabeDone = new Timestamp(getCurrentTimeInMs());
     }
     public Timestamp getTimestampOfLastAufgabeDone(){
         if(lastAufgabeDone!=null)
@@ -272,36 +272,47 @@ public class Datenmodell implements Serializable {
 
     }
 
-    public boolean setNewAufgabeOrReturnFalse(){
-        boolean i = false;
-        if( newAufgabeIsAvailable() ){
+    public boolean setNewAufgabe(){
+
             currentAufgabe = randomizeNextCurrentAufgabe();
             currentLevel++;
-            i = true;
-        }
-        return i;
+          return true;
     }
-    public ArrayList<String> getNewAufgabe(){
-        setNewAufgabeOrReturnFalse();
 
-        return getAufgabenSammlungReihe(currentAufgabe);
-    }
     public void aufgabeGeschafft(){
         setCurrentAufgabeFinished();
         addToCoins(Integer.valueOf(getAufgabenWert(getCurrentAufgabe())));
-        lastAufgabeDone = new Timestamp(date.getTime());
+        lastAufgabeDone = new Timestamp(getCurrentTimeInMs());
 
     }
 
     public boolean newAufgabeIsAvailable() {
-        return (date.getTime() - lastAufgabeDone.getTime()) >= TimeBetweenTwoAufgabenInMilliseconds || lastAufgabeDone.equals(new Timestamp(0));
+        return (getCurrentTimeInMs() - lastAufgabeDone.getTime()) >= TimeBetweenTwoAufgabenInMilliseconds || lastAufgabeDone.equals(new Timestamp(0));
     }
 
 
+    /** @brief Prüft auf verschiedene Fälle, wie es mit den Aufgaben steht.
+     *
+     * Ruft unter Umständen setNewAufgabe() auf, wodurch Änderungen passieren.
+     *
+     * @return int , 0 für "Keine neue Aufgabe! Du musst noch warten", 1 für "Es läuft grade noch eine Aufgabe, schließe sie ab!", 2 für "Hier ist eine neue Aufgabe!"
+     */
+    public int handleNewAufgabeOrNot() {
+        if (aufgabeAlreadyFinished(getCurrentAufgabe())) {
+            if (newAufgabeIsAvailable()) {
+                //mach neue
+                setNewAufgabe();
+                return 2;
+            }
+            else {
+                //keine neue, geh in played
+                return 0;
+            }
+        }
 
-
-
-
+        //keine neue, mach momentane fertig!
+        return 1;
+    }
 
 
 

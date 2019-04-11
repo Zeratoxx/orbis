@@ -9,12 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PlayActivity extends AppCompatActivity {
@@ -45,43 +42,17 @@ public class PlayActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        /*new HttpRequestAsync().execute("debug=1");
-        if(myData.isVolumeMuteState()) {
-            slider.setProgress(0);
-            aktuelleLautstarke.setText("0");
-            imageButtonMute.setImageResource(R.drawable.ic_volume_off);
+
+        if(myData.handleNewAufgabeOrNot() > 0) {
+            textView_score.setText(String.valueOf(myData.getCoins()));
+            textView_aufgabe.setText(myData.getAufgabe());
+            textView_level.setText(String.valueOf(myData.getCurrentLevel()));
+            textView_bonusCoins.setText("+ " + String.valueOf(myData.getAufgabenWert(myData.getCurrentAufgabe())));
         } else {
-            slider.setProgress(myData.getVolume());
-            aktuelleLautstarke.setText(Integer.toString(myData.getVolume()));
-            imageButtonMute.setImageResource(R.drawable.ic_volume_up);
+            Intent myIntent = new Intent(this, PlayedActivity.class);
+            startActivity(myIntent);
+            overridePendingTransition(R.anim.none, R.anim.none);
         }
-        if(myData.getChannelMainPosition() != -1) { buttonSender.setText(myData.getAlleProgrammNamen().get(myData.getChannelMainPosition())); }
-        else { buttonSender.setText("Sender"); }
-        if(myData.isPause())
-        {
-            buttonPause.setText(R.string.programm_weiter);
-            buttonPause.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.ic_media_play, 0);
-        }
-        else
-        {
-            buttonPause.setText(R.string.programm_pausieren);
-            buttonPause.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.ic_media_pause, 0);
-        }
-        if(myData.isZoomState())
-        {
-            buttonZoom.setChecked(true);
-        }
-        else
-        {
-            buttonZoom.setChecked(false);
-        }*/
-
-
-
-        textView_score.setText(String.valueOf(myData.getCoins()));
-        textView_aufgabe.setText(myData.getAufgabe());
-        textView_level.setText(String.valueOf(myData.getCurrentLevel()));
-        textView_bonusCoins.setText("+"+String.valueOf(myData.getAufgabenWert(myData.getCurrentAufgabe())));
     }
 
 
